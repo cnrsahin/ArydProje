@@ -1,0 +1,59 @@
+﻿@model OrderLineAddViewModel
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary">Malzeme Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="Add" asp-controller="OrderLine">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="OrderLineDto.Id" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderLineDto.MaterialCode"></label>
+                        <input class="form-control form-control-sm" asp-for="OrderLineDto.MaterialCode" required />
+                        <span class="text-danger" asp-validation-for="OrderLineDto.MaterialCode"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderLineDto.MaterialDescription"></label>
+                        <textarea class="form-control form-control-sm" asp-for="OrderLineDto.MaterialDescription" required></textarea>
+                        <span class="text-danger" asp-validation-for="OrderLineDto.MaterialDescription"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderLineDto.Quantity"></label>
+                        <input class="form-control form-control-sm" asp-for="OrderLineDto.Quantity" required />
+                        <span class="text-danger" asp-validation-for="OrderLineDto.Quantity"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderLineDto.UnitPrice"></label>
+                        <input class="form-control form-control-sm" asp-for="OrderLineDto.UnitPrice" required />
+                        <span class="text-danger" asp-validation-for="OrderLineDto.UnitPrice"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderLineDto.TaxRate"></label>
+                        <input class="form-control form-control-sm" asp-for="OrderLineDto.TaxRate" required />
+                        <span class="text-danger" asp-validation-for="OrderLineDto.TaxRate"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="OrderLineDto.TaxAmount" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="OrderLineDto.TotalAmount" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="OrderHeaderId" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Vazgeç</button>
+                        <input type="submit" value="Ekle" class="btn btn-sm btn-outline-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

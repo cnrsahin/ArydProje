@@ -1,0 +1,42 @@
+﻿@model OrderHeaderDto
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary">Fiş Güncelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="Update" asp-controller="OrderHeader">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="Id" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="VoucherNo" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProjectCode"></label>
+                        <input class="form-control form-control-sm" asp-for="ProjectCode" required />
+                        <span class="text-danger" asp-validation-for="ProjectCode"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="Date" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="SpecialCode" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control form-control-sm" asp-for="TotalAmount" />
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Vazgeç</button>
+                        <input type="submit" value="Güncelle" class="btn btn-sm btn-outline-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

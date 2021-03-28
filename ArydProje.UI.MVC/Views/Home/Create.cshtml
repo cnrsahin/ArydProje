@@ -1,0 +1,44 @@
+﻿@model NewOrderViewModel
+
+@{
+    ViewData["Title"] = "Yeni Sipariş";
+}
+
+<div class="card-header">
+    <form method="post" asp-action="Create" asp-controller="Home">
+        <div class="form-group">
+            <label asp-for="OrderHeaderCreateDto.ProjectCode"></label>
+            <input class="form-control form-control-sm" asp-for="OrderHeaderCreateDto.ProjectCode" required />
+            <span class="text-danger" asp-validation-for="OrderHeaderCreateDto.ProjectCode"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderLineCreateDto.MaterialCode"></label>
+            <input class="form-control form-control-sm" asp-for="OrderLineCreateDto.MaterialCode" required />
+            <span class="text-danger" asp-validation-for="OrderLineCreateDto.MaterialCode"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderLineCreateDto.MaterialDescription"></label>
+            <textarea class="form-control form-control-sm" asp-for="OrderLineCreateDto.MaterialDescription" required></textarea>
+            <span class="text-danger" asp-validation-for="OrderLineCreateDto.MaterialDescription"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderLineCreateDto.Quantity"></label>
+            <input class="form-control form-control-sm" asp-for="OrderLineCreateDto.Quantity" required />
+            <span class="text-danger" asp-validation-for="OrderLineCreateDto.Quantity"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderLineCreateDto.UnitPrice"></label>
+            <input class="form-control form-control-sm" asp-for="OrderLineCreateDto.UnitPrice" required />
+            <span class="text-danger" asp-validation-for="OrderLineCreateDto.UnitPrice"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="OrderLineCreateDto.TaxRate"></label>
+            <input class="form-control form-control-sm" asp-for="OrderLineCreateDto.TaxRate" required />
+            <span class="text-danger" asp-validation-for="OrderLineCreateDto.TaxRate"></span>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Vazgeç</button>
+            <input type="submit" value="Oluştur" class="btn btn-sm btn-outline-primary" />
+        </div>
+    </form>
+</div>

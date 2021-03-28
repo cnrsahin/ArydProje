@@ -1,0 +1,21 @@
+﻿@model LeftSideBarViewModel
+
+<div class="list-group">
+    @{
+        var selected = "list-group-item";
+        if (Model.ThisHeader == 0)
+        {
+            selected += " active";
+        }
+    }
+
+    @foreach (var orderHeader in Model.OrderHeaderDtos)
+    {
+        var css = "list-group-item";
+        if (orderHeader.Id == Model.ThisHeader)
+        {
+            css += " active";
+        }
+        <a asp-controller="Home" asp-action="GetLines" asp-route-orderHeaderId="@orderHeader.Id" class="@css">Fiş No #@orderHeader.VoucherNo - @orderHeader.TotalAmount.ToString()₺</a>
+    }
+</div>

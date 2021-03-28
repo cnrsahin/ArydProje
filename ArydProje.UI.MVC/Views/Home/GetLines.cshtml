@@ -1,0 +1,55 @@
+﻿@model OrderLineWithHeaderViewModel
+@{
+    ViewData["Title"] = "Aryd Proje";
+}
+
+<div id="placeModal" aria-hidden="true"></div>
+<div class="text-center">
+    <div class="card mb-2">
+        <div class="card-body">
+            <h4 class="card-title">Fiş Numarası: #@Model.OrderHeaderDto.VoucherNo.ToString()</h4>
+            <h6 class="card-subtitle mb-2 text-info">Tarih: @Model.OrderHeaderDto.Date.ToString()</h6>
+            <h6 class="card-subtitle mb-2 text-info">Özel Kod: @Model.OrderHeaderDto.SpecialCode.ToString()</h6>
+            <h6 class="card-subtitle mb-2 text-info">Proje Kodu: @Model.OrderHeaderDto.ProjectCode</h6>
+            <h6 class="card-subtitle mb-2 text-danger">Toplam Tutar: @Model.OrderHeaderDto.TotalAmount.ToString()₺</h6>
+            <p class="card-text"></p>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="card-link btn btn-outline-success" id="lineAdd" data-id="@Model.OrderHeaderDto.Id">Malzeme Ekle</a>
+            <a href="#" class="card-link btn btn-outline-primary" id="headerUpdate" data-id="@Model.OrderHeaderDto.Id">Fişi Güncelle</a>
+            <a asp-controller="OrderHeader" asp-action="Delete" asp-route-orderHeaderId="@Model.OrderHeaderDto.Id" class="card-link btn btn-outline-danger">Fişi Sil</a>
+        </div>
+    </div>
+    <table class="table table-responsive-sm table-hover">
+        <thead>
+            <tr>
+                <th>Malzeme Kodu</th>
+                <th>Malzeme Açıklaması</th>
+                <th>Malzeme Miktarı</th>
+                <th>Birim Fiyat</th>
+                <th>Kdv Oranı</th>
+                <th>Kdv Tutarı</th>
+                <th>Toplam Tutar</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderLine in Model.OrderLineDtos)
+            {
+                <tr>
+                    <td>@orderLine.MaterialCode</td>
+                    <td>@orderLine.MaterialDescription</td>
+                    <td>@orderLine.Quantity.ToString()</td>
+                    <td>@orderLine.UnitPrice.ToString()₺</td>
+                    <td>%@orderLine.TaxRate.ToString()</td>
+                    <td>@orderLine.TaxAmount.ToString()₺</td>
+                    <td>@orderLine.TotalAmount.ToString()₺</td>
+                    <td>
+                        <a asp-controller="OrderLine" asp-action="Delete" asp-route-id="@orderLine.Id" asp-route-orderHeaderId="@Model.OrderHeaderDto.Id" class="btn btn-sm btn-outline-danger">Sil</a>
+                        <button class="btn btn-sm btn-outline-info mt-1" id="orderLineUpdate" data-id="@orderLine.Id">Güncelle</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
