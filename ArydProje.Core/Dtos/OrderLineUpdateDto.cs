@@ -15,14 +15,14 @@ namespace ArydProje.Core.Dtos
         [DisplayName("Malzeme Kodu")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir.")]
         [MaxLength(55, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
+        [MinLength(1, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         [DataType(DataType.Text)]
         public string MaterialCode { get; set; }
 
         [DisplayName("Malzeme Açıklaması")]
         [Required(ErrorMessage = "{0} boş geçilmemelidir.")]
         [MaxLength(250, ErrorMessage = "{0} {1} karakterden büyük olmamalıdır.")]
-        [MinLength(3, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
+        [MinLength(1, ErrorMessage = "{0} {1} karakterden küçük olmamalıdır.")]
         [DataType(DataType.Text)]
         public string MaterialDescription { get; set; }
 

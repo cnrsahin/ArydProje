@@ -5,11 +5,14 @@ using ArydProje.Core.Abstract.Calculator;
 using ArydProje.Core.Abstract.Repositories;
 using ArydProje.Core.Abstract.Services;
 using ArydProje.Core.Abstract.UnitOfWorks;
+using ArydProje.Core.Dtos;
 using ArydProje.Data.Concrete.DbContexts;
 using ArydProje.Data.Concrete.Repositories;
 using ArydProje.Data.Concrete.UnitOfWorks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +24,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ArydProje.Api
@@ -73,6 +77,27 @@ namespace ArydProje.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ArydProje.Api v1"));
             }
+
+            app.UseExceptionHandler(opt =>
+            {
+                opt.Run(async context =>
+                {
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "application/json";
+                    var error = context.Features.Get<IExceptionHandlerFeature>();
+
+                    if(error != null)
+                    {
+                        var exp = error.Error;
+
+                        var errorDto = new ErrorDto();
+                        errorDto.Status = 500;
+                        errorDto.Errors.Add(exp.Message);
+
+                        await context.Response.WriteAsync(JsonSerializer.Serialize(errorDto));
+                    }
+                });
+            });
 
             app.UseHttpsRedirection();
 
