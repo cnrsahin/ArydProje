@@ -11,8 +11,8 @@ namespace ArydProje.Data.Concrete.DbContexts
 {
     public class OrderDbContext : DbContext
     {
-        public DbSet<OrderHeader> OrderHeaders { get; set; }
-        public DbSet<OrderLine> OrderLines { get; set; }
+        public virtual DbSet<OrderHeader> OrderHeaders { get; set; }
+        public virtual DbSet<OrderLine> OrderLines { get; set; }
 
         public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options)
         {
